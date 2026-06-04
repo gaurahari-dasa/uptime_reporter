@@ -48,9 +48,10 @@ def get_todays_boot_time() -> datetime.datetime | None:
                 dt = event.TimeGenerated.replace(tzinfo=None)
                 if dt.date() < today:
                     return earliest
+                eid = event.EventID & 0xFFFF
                 if (
-                    event.EventID & 0xFFFF in (1, 12)
-                    and event.SourceName == "Microsoft-Windows-Kernel-General"
+                    (eid in (1, 12) and event.SourceName == "Microsoft-Windows-Kernel-General")
+                    or (eid == 1 and event.SourceName == "Microsoft-Windows-Power-Troubleshooter")
                 ):
                     earliest = dt
         return earliest
