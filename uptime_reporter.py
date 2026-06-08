@@ -89,7 +89,7 @@ class UptimeWidget:
         root.attributes("-alpha", 0.93)
         root.configure(bg=self._BORDER)
 
-        inner = tk.Frame(root, bg=self._BG, padx=6, pady=4)
+        inner = tk.Frame(root, bg=self._BG, padx=6, pady=0)
         inner.pack(padx=1, pady=1)
 
         # Top row: large hours + smaller minutes side by side
