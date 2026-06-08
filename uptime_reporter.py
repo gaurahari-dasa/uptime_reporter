@@ -104,7 +104,7 @@ class UptimeWidget:
 
         self._lbl_m = tk.Label(
             row, text="--", font=("Segoe UI", 7),
-            fg=self._FG_MINS, bg=self._BG, pady=5,
+            fg=self._FG_MINS, bg=self._BG, pady=6,
         )
         self._lbl_m.pack(side=tk.LEFT, anchor=tk.S)
 
@@ -126,7 +126,8 @@ class UptimeWidget:
         )
         self._menu.add_command(label="Quit", command=self._quit)
 
-        self._position_near_clock()
+        # self._position_near_clock()
+        self._position_near_top()
         self._tick()
 
     # ------------------------------------------------------------------
@@ -142,6 +143,14 @@ class UptimeWidget:
         w = self.root.winfo_reqwidth()
         h = self.root.winfo_reqheight()
         self.root.geometry(f"+{sw - w - 180}+{sh - h - 8}")
+
+    def _position_near_top(self):
+        self.root.update_idletasks()
+        sw = self.root.winfo_screenwidth()
+        sh = self.root.winfo_screenheight()
+        w = self.root.winfo_reqwidth()
+        h = self.root.winfo_reqheight()
+        self.root.geometry(f"+{sw - w - 180}+{0}")
 
     def _drag_start(self, event):
         self._drag_x = event.x_root - self.root.winfo_x()
