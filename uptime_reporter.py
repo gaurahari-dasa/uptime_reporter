@@ -150,7 +150,7 @@ class UptimeWidget:
         sh = self.root.winfo_screenheight()
         w = self.root.winfo_reqwidth()
         h = self.root.winfo_reqheight()
-        self.root.geometry(f"+{sw - w - 180}+{0}")
+        self.root.geometry(f"+{sw - w - 60}+{0}")
 
     def _drag_start(self, event):
         self._drag_x = event.x_root - self.root.winfo_x()
