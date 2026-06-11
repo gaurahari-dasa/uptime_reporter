@@ -167,6 +167,15 @@ class UptimeWidget:
             self._tray.stop()
         self.root.destroy()
 
+    def _show_window(self):
+        self.root.after(0, self._do_show_window)
+
+    def _do_show_window(self):
+        self.root.deiconify()
+        self.root.attributes("-topmost", True)
+        self.root.lift()
+        self.root.focus_set()
+
     def attach_tray(self, icon: pystray.Icon):
         self._tray = icon
 
@@ -224,7 +233,8 @@ def main():
         icon=_make_tray_icon(),
         title="Uptime",
         menu=pystray.Menu(
-            pystray.MenuItem("Quit", lambda *_: widget._quit())
+            pystray.MenuItem("Show Window", lambda *_: widget._show_window()),
+            pystray.MenuItem("Quit", lambda *_: widget._quit()),
         ),
     )
     widget.attach_tray(tray)
