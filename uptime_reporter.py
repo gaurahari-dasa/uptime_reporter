@@ -128,7 +128,7 @@ class UptimeWidget:
 
         # self._position_near_clock()
         self._position_near_top()
-        self._tick()
+        self.root.after(0, self._tick)
 
     # ------------------------------------------------------------------
     def _all_widgets(self, parent):
